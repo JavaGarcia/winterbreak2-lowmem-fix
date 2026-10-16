@@ -1,0 +1,66 @@
+== date
+Thu Oct 15 22:43:25 EST 2026
+246.26
+== expected
+tar_len 24330240
+tar_md5 cf82b0b854d35a04571282e4932d659b
+== previous run3 tmp
+cat: can't open '/var/local/kd_test3.tmp': No such file or directory
+== P1_file
+cmd: xz -dc /mnt/us/kd_test/kmc9.tar.xz | md5sum
+Mem:        254828     228088      26740          0       4888      31232
+Thu Oct 15 22:43:27 EST 2026
+xz: corrupted data
+d41d8cd98f00b204e9800998ecf8427e  -
+rc=0 Thu Oct 15 22:43:27 EST 2026
+== P3_cat_pipe
+cmd: { cat /mnt/us/kd_test/kmc9.tar.xz | xz -d; echo xz_exit=$? >&2; } | md5sum
+Mem:        254828     228564      26264          0       4924      31308
+Thu Oct 15 22:43:27 EST 2026
+xz: corrupted data
+cat: write error: Broken pipe
+xz_exit=1
+d41d8cd98f00b204e9800998ecf8427e  -
+rc=0 Thu Oct 15 22:43:27 EST 2026
+== P4_base64_pipe
+cmd: { base64 -d < /mnt/us/kd_test/payload.b64 | xz -d; echo xz_exit=$? >&2; } | md5sum
+Mem:        254828     229016      25812          0       5048      31516
+Thu Oct 15 22:43:27 EST 2026
+xz: corrupted data
+base64: standard output: Broken pipe
+xz_exit=1
+d41d8cd98f00b204e9800998ecf8427e  -
+rc=0 Thu Oct 15 22:43:29 EST 2026
+== P2_stdin_file
+cmd: { xz -d < /mnt/us/kd_test/kmc9.tar.xz; echo xz_exit=$? >&2; } | md5sum
+Mem:        254828     231996      22832          0       6400      34156
+Thu Oct 15 22:43:29 EST 2026
+xz: corrupted data
+xz_exit=1
+d41d8cd98f00b204e9800998ecf8427e  -
+rc=0 Thu Oct 15 22:43:29 EST 2026
+== P5_cat_pipe_xz6
+cmd: { cat /mnt/us/kd_test/kmc6.tar.xz | xz -d; echo xz_exit=$? >&2; } | md5sum
+Mem:        254828     232200      22628          0       6408      34184
+Thu Oct 15 22:43:29 EST 2026
+xz_exit=0
+cf82b0b854d35a04571282e4932d659b  -
+rc=0 Thu Oct 15 22:43:33 EST 2026
+== P6_dd_512_pipe
+cmd: { dd if=/mnt/us/kd_test/kmc9.tar.xz bs=512 2>/dev/null | xz -d; echo xz_exit=$? >&2; } | md5sum
+Mem:        254828     239376      15452          0       9676      38332
+Thu Oct 15 22:43:33 EST 2026
+xz: corrupted data
+xz_exit=1
+d41d8cd98f00b204e9800998ecf8427e  -
+rc=0 Thu Oct 15 22:43:33 EST 2026
+== dmesg
+[  244.699246] Code: e320f000 e320f000 f2200150 e12fff1e (ec510f1e) 
+[  246.020965] AdmDaemon (6706): undefined instruction: pc=401c6228
+[  246.020974] Code: e320f000 e320f000 f2200150 e12fff1e (ec510f1e) 
+[  246.879474] ThreadPool-Proc (6356): undefined instruction: pc=40c62870
+[  246.879484] Code: 60026001 00016008 60096000 e8bd4800 (e7f000f0) 
+== watch log
+Thu Oct 15 22:40:36 EST 2026 arranque
+Thu Oct 15 22:40:36 EST 2026 boot: -rwsr-sr-x    6 root     root         59036 Oct 15 20:11 /var/local/kmc/kindlepw2/bin/gandalf
+== done

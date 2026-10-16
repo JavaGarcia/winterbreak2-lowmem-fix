@@ -1,0 +1,33 @@
+# /mnt/us/jb.sh.log from the official WinterBreak2 flow (jb.sh v2.2.1, RUN_MODE=1, JB_SH_DEBUG=1)
+# Kindle Paperwhite 2, FW 5.12.2.2. IP address redacted.
+Powered by jb.sh - created by Hackerdude
+v2.2.1
+
+J:1:0:0:kindlepw2
+
+Running in DEBUG mode
+Starting telnet...
+Telnet Started On: <redacted> : 23
+Stopping OTA
+Checking storage...
+Reading storage from folders
+Removing mkk
+Removing kmc
+Unpacking KMC
+Setting KMC permissions
+Setting KMC gandalf permissions
+Establishing Gandalf links
+Installing libkh binaries
+Deleting old hotfix
+Setting up hotfix and emergency runners
+
+
+/usr/lib/ccat detected - deferring sh_integration setup to system patch stage
+Copying the kindlet keystore
+Copying the kindlet keystore
+Running system patch script
+Done
+Restarting Kindle...
+
+# Note: every step "succeeds" because /tmp/kmc was empty (xz failed earlier, see 02_*),
+# yet JAILBROKEN.txt is written. /var/local/kmc ends up containing only dangling symlinks.

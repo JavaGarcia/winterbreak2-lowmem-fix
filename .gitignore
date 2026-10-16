@@ -1,0 +1,4 @@
+out/
+*.tar.gz
+jb.sh
+.DS_Store

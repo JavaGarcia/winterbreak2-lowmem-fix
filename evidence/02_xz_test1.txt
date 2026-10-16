@@ -1,0 +1,59 @@
+== date
+Thu Oct 15 21:51:27 EST 2026
+ 21:51:27 up 12 min,  0 users,  load average: 2.13, 1.12, 0.68
+== watch log
+cat: can't open '/var/local/kmc/kd_watch.log': No such file or directory
+ls: /var/local/kmc/kd_watch.sh: No such file or directory
+-rwxrwxr-x    6 root     javauser     59036 Oct 15 20:11 /var/local/kmc/kindlepw2/bin/gandalf
+
+/var/local/mkk:
+total 120
+drwxrwsr-x    2 root     javauser      1024 Oct 15 20:46 .
+drwxrwsr-x   27 framewor javauser      1024 Oct 15 21:51 ..
+-rwxrwxr-x    6 root     javauser     59036 Oct 15 20:11 gandalf
+-rwxrwxr-x    6 root     javauser     59036 Oct 15 20:11 su
+== ps watch
+== messages bridge
+261015:214746 scan[5839]: I fullscan:BRIDGE::----2----
+261015:214922 scan[5839]: I fullscan:BRIDGE::----2----
+261015:214933 scan[5839]: I fullscan:BRIDGE::----2----
+261015:215105 scan[5839]: I fullscan:BRIDGE::----2----
+261015:215117 mesquite[7966]: I com.lab126.browser:SecureJSBridge::SecureJSBridge(): constructor :
+== apply fix
+-rwsr-sr-x    6 root     root         59036 Oct 15 20:11 /var/local/kmc/kindlepw2/bin/gandalf
+uid=0(root) gid=0(root) groups=0(root)
+== xz impl
+BusyBox v1.28.3 (2021-12-03 04:36:43 UTC) multi-call binary.
+
+Usage: xz -d [-cfk] [FILE]...
+== mem before
+             total       used       free     shared    buffers     cached
+Mem:        254828     245060       9768          0      15112      53996
+-/+ buffers/cache:     175952      78876
+Swap:            0          0          0
+MemFree:            9760 kB
+Cached:            53996 kB
+SwapCached:            0 kB
+Committed_AS:     580392 kB
+== T3 xz -9 (archivo, 64 MiB dict) -> /dev/null
+T3_exit=0
+== T2 xz -6 (8 MiB dict) -> tar tf
+xz_exit=0
+48
+T2_done
+== T1 linea 5 original de jb.sh (echo|base64|xz|tar tf)
+xz: corrupted data
+xz_exit=1
+tar: short read
+0
+base64: standard output: Broken pipe
+base64_exit=0
+pipeline_done
+== mem after
+             total       used       free     shared    buffers     cached
+Mem:        254828     228484      26344          0       8224      45424
+-/+ buffers/cache:     174836      79992
+Swap:            0          0          0
+== dmesg
+[    7.047263] udevd (772): /proc/772/oom_adj is deprecated, please use /proc/772/oom_score_adj instead.
+== done
